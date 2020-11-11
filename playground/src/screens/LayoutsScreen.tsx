@@ -39,42 +39,45 @@ export default class LayoutsScreen extends NavigationComponent {
   render() {
     return (
       <Root componentId={this.props.componentId}>
-        <Button label="Stack" testID={STACK_BTN} onPress={this.stack} />
+        {/* <Button label="Stack" testID={STACK_BTN} onPress={this.stack} /> */}
         <Button label="BottomTabs" testID={BOTTOM_TABS_BTN} onPress={this.bottomTabs} />
-        <Button label="SideMenu" testID={SIDE_MENU_BTN} onPress={this.sideMenu} />
+        {/* <Button label="SideMenu" testID={SIDE_MENU_BTN} onPress={this.sideMenu} />
         <Button
           label="SplitView"
           testID={SPLIT_VIEW_BUTTON}
           platform="ios"
           onPress={this.splitView}
-        />
+        /> */}
       </Root>
     );
   }
 
   stack = () => Navigation.showModal(Screens.Stack);
 
-  bottomTabs = () =>
-    Navigation.showModal({
-      bottomTabs: {
-        children: [
-          stack(Screens.FirstBottomTabsScreen),
-          stack(
-            {
-              component: {
-                name: Screens.SecondBottomTabsScreen,
+  bottomTabs = () => {
+    Navigation.push(this.props.componentId, {
+        bottomTabs: {
+          children: [
+              {
+                  component: {
+                    name: Screens.FirstBottomTabsScreen,
+                  },
               },
+              {
+                  component: {
+                    name: Screens.SecondBottomTabsScreen,
+                  },
+              }
+          ],
+          options: {
+            bottomTabs: {
+              testID: BOTTOM_TABS,
             },
-            'SecondTab'
-          ),
-        ],
-        options: {
-          bottomTabs: {
-            testID: BOTTOM_TABS,
           },
         },
-      },
-    });
+      });
+  }
+  
 
   sideMenu = () =>
     Navigation.showModal({

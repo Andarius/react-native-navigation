@@ -43,11 +43,11 @@ export default class FirstBottomTabScreen extends React.Component<NavigationComp
     return (
       <Root componentId={this.props.componentId}>
         <Button
-          label="Switch Tab by Index"
+          label="Change right button"
           testID={SWITCH_TAB_BY_INDEX_BTN}
           onPress={this.switchTabByIndex}
         />
-        <Button
+        {/* <Button
           label="Switch Tab by componentId"
           testID={SWITCH_TAB_BY_COMPONENT_ID_BTN}
           onPress={this.switchTabByComponentId}
@@ -62,16 +62,21 @@ export default class FirstBottomTabScreen extends React.Component<NavigationComp
           testID={HIDE_TABS_PUSH_BTN}
           onPress={this.hideTabsOnPush}
         />
-        <Button label="Push" onPress={this.push} />
+        <Button label="Push" onPress={this.push} /> */}
       </Root>
     );
   }
 
   switchTabByIndex = () =>
     Navigation.mergeOptions(this, {
-      bottomTabs: {
-        currentTabIndex: 1,
-      },
+      topBar: {
+          rightButtons: [
+              {
+                icon: require('../../img/whatshot.png'),
+                color: 'red'
+              }
+          ]
+      }
     });
 
   switchTabByComponentId = () =>
