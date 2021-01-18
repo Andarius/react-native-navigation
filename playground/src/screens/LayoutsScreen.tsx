@@ -63,6 +63,16 @@ export default class LayoutsScreen extends NavigationComponent {
             {
               component: {
                 name: Screens.SecondBottomTabsScreen,
+                options: {
+                    topBar: {
+                        rightButtons: [
+                            {
+                                color: 'red',
+                                icon: require('../../img/star.png')
+                            }
+                        ]
+                    }
+                }
               },
             },
             'SecondTab'

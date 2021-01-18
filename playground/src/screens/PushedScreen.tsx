@@ -46,8 +46,8 @@ export default class PushedScreen extends NavigationComponent<Props> {
         },
         rightButtons: [
           {
-            id: 'singleBtn',
-            text: 'single',
+            icon: require('../../img/star.png'),
+            color: 'blue',
             testID: TOP_BAR_BTN,
           },
         ],
