@@ -52,6 +52,8 @@ export default class PushedScreen extends NavigationComponent<Props> {
           },
         ],
         backButton: {
+          id: BACK_BUTTON,
+          visible: true,
           testID: BACK_BUTTON,
           enableMenu: false,
         },
@@ -65,8 +67,31 @@ export default class PushedScreen extends NavigationComponent<Props> {
   }
 
   navigationButtonPressed({ buttonId }: NavigationButtonPressedEvent) {
+    console.log('Pressed button: ', buttonId)
     if (buttonId === 'backPress') alert('back button clicked');
   }
+
+//   Navigation.events()
+
+  hideBackButton = () =>
+    Navigation.mergeOptions(this, {
+        topBar: {
+            backButton: {
+                visible: false
+            }
+        }
+  });
+
+  showBackButton = () =>
+  Navigation.mergeOptions(this, {
+      topBar: {
+          backButton: {
+            //   id: BACK_BUTTON,
+              visible: true
+          }
+      }
+  });
+  
 
   render() {
     const stackPosition = this.getStackPosition();
@@ -76,6 +101,14 @@ export default class PushedScreen extends NavigationComponent<Props> {
           <Button label="Push" testID={PUSH_BTN} onPress={this.push} marginH-5 />
           <Button label="Pop" testID={POP_BTN} onPress={this.pop} marginH-5 />
         </View>
+        <Button
+          label="Hide back button"
+          onPress={this.hideBackButton}
+        />
+         <Button
+          label="Show back button"
+          onPress={this.showBackButton}
+        />
         <Button
           label="Push Without Animation"
           testID={PUSH_NO_ANIM_BTN}
