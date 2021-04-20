@@ -1,11 +1,11 @@
 import React from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import { NavigationComponentProps } from 'react-native-navigation';
-
-import Root from '../components/Root';
 import Button from '../components/Button';
+import Root from '../components/Root';
 import Navigation from '../services/Navigation';
-import Screens from './Screens';
 import testIDs from '../testIDs';
+import Screens from './Screens';
 
 const {
   CHANGE_TITLE_BTN,
@@ -42,6 +42,16 @@ export default class Options extends React.Component<Props> {
   render() {
     return (
       <Root componentId={this.props.componentId}>
+        <ScrollView removeClippedSubviews={false} horizontal={true}>
+          {[...Array(1000).keys()].map((x) => (
+            <View
+              key={x}
+              style={{ marginHorizontal: 10, height: 50, width: 100, backgroundColor: 'red' }}
+            >
+              <Text>{x}</Text>
+            </View>
+          ))}
+        </ScrollView>
         <Button label="Change title" testID={CHANGE_TITLE_BTN} onPress={this.changeTitle} />
         <Button label="Hide TopBar" testID={HIDE_TOP_BAR_BTN} onPress={this.hideTopBar} />
         <Button label="Show TopBar" testID={SHOW_TOP_BAR_BTN} onPress={this.showTopBar} />
